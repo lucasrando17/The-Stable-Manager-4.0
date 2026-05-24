@@ -1,16 +1,27 @@
-UPLOAD THIS WHOLE FOLDER TO A NEW GITHUB REPO
+SAFE 2FA + STABLE NAME PERSISTENCE PATCH
 
-Do not add package-lock.json.
+IMPORTANT:
+- Do NOT upload this ZIP as a file into GitHub.
+- Do NOT replace package.json.
+- Do NOT replace package-lock.json.
 
-Vercel settings:
-Framework Preset: Vite
-Install Command: npm install
-Build Command: npm run build
-Output Directory: dist
-Node.js Version: 20.x
+Use only:
+1. src/main.jsx
+2. RUN_THIS_SQL_STABLE_NAME_PERSISTENCE_FIX.sql
 
-Environment variables:
-VITE_SUPABASE_URL = your Supabase project URL
-VITE_SUPABASE_ANON_KEY = your Supabase publishable/anon key
+Steps:
+1. In GitHub, open src/main.jsx.
+2. Select all and replace it with the contents of src/main.jsx from this ZIP.
+3. Commit:
+   Add safe 2FA and stable name persistence fix
 
-This is before the 2FA work.
+4. In Supabase SQL Editor, run:
+   RUN_THIS_SQL_STABLE_NAME_PERSISTENCE_FIX.sql
+
+What this does:
+- Adds optional authenticator-app 2FA in Settings > Security.
+- Challenges only on fresh login/new browser/new device once 2FA is enabled.
+- Existing remembered sessions should not be interrupted every morning.
+- Fixes stable name saving by improving the app save flow and adding the proper stables update/select policies.
+
+No package changes are required.
